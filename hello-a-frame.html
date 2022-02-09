@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <title>Hello AR.js! | 02</title>
+
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+</head>
+<body>
+  <a-scene>
+    <!--
+      a-box    -> 箱の追加
+      a-sphere -> 球の追加
+      * position: 位置 (xyz)
+      * rotation: 回転 (xyz)
+      * color   : 色 (hex)
+      * scale   : 大きさ (幅 高 奥行)
+    -->
+    <a-box position="-1 1 -2"
+           rotation="0 45 25"
+           color="#F00"
+           scale="1 1 1"
+           shadow="receive: true"></a-box>
+    <a-sphere position="1 1 -4"
+              color="#22F"
+              scale="1 1 1"
+              shadow="receive: true"></a-sphere>
+
+    <!--
+      a-plane -> 面の追加
+      * position: 位置 (xyz)
+      * rotation: 回転 (xyz)
+      * width   : 横幅
+      * height  : 高さ
+      * color   : 色 (hex)
+    -->
+    <a-plane position="0 0 -4"
+             rotation="-90 45 0"
+             width="4"
+             height="4"
+             color="#CCC"
+             shadow="receive: true"></a-plane>
+
+    <!-- 
+      a-entity -> 物体に設定を付与したりする。ここではライトの追加に使用。
+      * type       : ライトの種類
+                     - directional-> デフォルト設定。 環境光
+                     - ambient    -> 全ての物体に対して全方向から均一のライトを当てる。position/rotation/scale は無効
+                     - hemisphere -> anbient と同等だが、上と下からの光源を設定できる
+                     - point
+                     - spot
+      * color      : 光の色 (hex)
+      * castShadow : 光源が影に影響するかどうか (boolean)
+      * intensity  : ライトの強さ (初期値)
+     -->
+    <a-entity light="type: directional; color: #fff; castShadow: true;" position="-10 10 10"></a-entity>
+
+    <!-- 
+      a-animation -> a-entity タグの中で使用してアニメーションを付与する
+      * attribute : アニメーションの種類
+      * dur       : アニメーションする時間 (ミリ秒)
+      * to        : どれだけ動かすのか
+      * repeat    : 繰り返す回数　ずっと動かす場合 indefinite
+      * direction : 繰り返しの方法
+     -->
+    <a-entity>
+      <a-sphere position="0 0.2 -2"
+                color="#5F5"
+                scale="0.2 0.2 0.2"
+                shadow="receive: true"></a-sphere>
+      <a-animation attribute="position"
+                   dur="3000"
+                   to="0 1 0"
+                   repeat="indefinite"
+                   direction="alternate"></a-animation>
+    </a-entity>
+  </a-scene>
+</body>
+</html>
